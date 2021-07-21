@@ -44,102 +44,101 @@ let temporaryOperand = "";
 // Functions
 
 function DisplayNumbers() {
-  if (operation) {
-    previousElement.innerHTML = `${previousOperand} ${operation}`;
-  } else {
-    previousElement.innerHTML = previousOperand;
-  }
-  currentElement.innerHTML = currentOperand;
+    if (operation) {
+        prevss {
+        previousElement.innerHTML = previousOperand;
+    }
+    currentElement.innerHTML = currentOperand;
 }
 
 function AppendNumber(number) {
-  if (number === "." && currentOperand.includes(".")) return;
-  if (number === 0 && currentOperand === "0") return;
-  if (currentOperand.length > 7) return;
+    if (number === "." && currentOperand.includes(".")) return;
+    if (number === 0 && currentOperand === "0") return;
+    if (currentOperand.length > 7) return;
 
-  currentOperand = currentOperand.toString() + number.toString();
+    currentOperand = currentOperand.toString() + number.toString();
 
   DisplayNumbers();
 }
 
 function ChooseOperation(selectedOperation) {
-  if (temporaryOperand) {
-    previousOperand = temporaryOperand.toString();
-    currentOperand = "";
-    temporaryOperand = "";
-    operation = selectedOperation;
-    DisplayNumbers();
-    return;
-  }
+    if (temporaryOperand) {
+        previousOperand = temporaryOperand.toString();
+        currentOperand = "";
+        temporaryOperand = "";
+        operation = selectedOperation;
+        DisplayNumbers();
+        return;
+    }
   
-  operation = selectedOperation;
-  previousOperand = currentOperand;
-  acButton.innerHTML = "AC";
-  currentOperand = "";
+    operation = selectedOperation;
+    previousOperand = currentOperand;
+    acButton.innerHTML = "AC";
+    currentOperand = "";
 
-  DisplayNumbers();
+    DisplayNumbers();
 }
 
 function Compute() {
-  let computation;
-  const previous = parseFloat(previousOperand);
-  const current = parseFloat(currentOperand);
+    let computation;
+    const previous = parseFloat(previousOperand);
+    const current = parseFloat(currentOperand);
 
-  if (!operation) return;
-  if (isNaN(previous) || isNaN(current)) return;
+    if (!operation) return;
+    if (isNaN(previous) || isNaN(current)) return;
 
-  switch (operation) {
-    case "+":
-      computation = previous + current;
-      break;
+    switch (operation) {
+      case "+":
+        computation = previous + current;
+        break;
 
-    case "-":
-      computation = previous - current;
-      break;
+      case "-":
+        computation = previous - current;
+        break;
 
-    case "÷":
-      computation = previous / current;
-      break;
+      case "÷":
+        computation = previous / current;
+        break;
 
-    case "*":
-      computation = previous * current;
-      break;
+      case "*":
+        computation = previous * current;
+        break;
 
-    default:
-      break;
-  }
+      default:
+        break;
+    }
 
-  if (isNaN(computation)) return;
+    if (isNaN(computation)) return;
 
-  currentOperand = computation;
-  previousOperand = "";
-  operation = undefined;
-  DisplayNumbers();
-  temporaryOperand = currentOperand;
-  currentOperand = "";
+    currentOperand = computation;
+    previousOperand = "";
+    operation = undefined;
+    DisplayNumbers();
+    temporaryOperand = currentOperand;
+    currentOperand = "";
 }
 
 function AllClear() {
-  if (!previousOperand) {
-    currentOperand = currentOperand.slice(0, currentOperand.length - 1);
-  } else {
-    previousOperand = "";
-    currentOperand = "";
-    operation = undefined;
-    acButton.innerHTML = "C";
-  }
+    if (!previousOperand) {
+      currentOperand = currentOperand.slice(0, currentOperand.length - 1);
+    } else {
+      previousOperand = "";
+      currentOperand = "";
+      operation = undefined;
+      acButton.innerHTML = "C";
+    }
 
-  DisplayNumbers();
+    DisplayNumbers();
 }
 
 function PlusMinus() {
-  currentOperand = currentOperand * -1;
-  DisplayNumbers();
+    currentOperand = currentOperand * -1;
+    DisplayNumbers();
 }
 
 function Percent() {
-  currentOperand = currentOperand / 100;
-  DisplayNumbers();
+    currentOperand = currentOperand / 100;
+    DisplayNumbers();
 }
 
 // Add event listener to operator buttons
